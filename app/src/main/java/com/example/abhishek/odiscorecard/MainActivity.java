@@ -11,9 +11,6 @@ import android.widget.Toast;
 public class MainActivity extends AppCompatActivity {
 
     public String teama,teamb,overs,wkts;
-    EditText t1 = (EditText) findViewById(R.id.teama);
-    EditText t2 = (EditText) findViewById(R.id.teamb);
-    EditText over = (EditText) findViewById(R.id.overs);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +34,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private boolean check_fieldStatus() {
+        EditText t1 = (EditText) findViewById(R.id.teama);
+        EditText t2 = (EditText) findViewById(R.id.teamb);
+        EditText over = (EditText) findViewById(R.id.overs);
         teama = t1.getText().toString();
         teamb = t2.getText().toString();
         overs = over.getText().toString();
