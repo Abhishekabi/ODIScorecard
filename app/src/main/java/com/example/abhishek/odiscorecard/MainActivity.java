@@ -1,21 +1,45 @@
 package com.example.abhishek.odiscorecard;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
-    public String teama,teamb,overs,wkts;
+    private String teama,teamb,overs,wkts;
+    private String[] wktSpinner;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        wktSpinner = new String[]{"1","2","3","4","5","6","7","8","9","10","11","12"};
+        Spinner spinner = (Spinner)findViewById(R.id.wkts);
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,R.layout.spinner_item,wktSpinner);
+        spinner.setAdapter(adapter);
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+        wkts = spinner.getSelectedItem().toString();
 
         Button button = (Button)findViewById(R.id.next);
         button.setOnClickListener(new View.OnClickListener() {
@@ -46,4 +70,6 @@ public class MainActivity extends AppCompatActivity {
         }
         return true;
     }
+
+
 }
