@@ -1,7 +1,6 @@
 package com.example.abhishek.odiscorecard;
 
 import android.content.Intent;
-import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -10,7 +9,6 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
-import android.widget.TextView;
 import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
@@ -58,9 +56,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private boolean check_fieldStatus() {
-        EditText t1 = (EditText) findViewById(R.id.teama);
-        EditText t2 = (EditText) findViewById(R.id.teamb);
-        EditText over = (EditText) findViewById(R.id.overs);
+        EditText t1 =  findViewById(R.id.teama);
+        EditText t2 =  findViewById(R.id.teamb);
+        EditText over =  findViewById(R.id.overs);
         teama = t1.getText().toString();
         teamb = t2.getText().toString();
         overs = over.getText().toString();
