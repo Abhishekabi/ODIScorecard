@@ -15,7 +15,7 @@ import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
-    private String teama,teamb,overs,wkts;
+    private String teama, teamb, overs, wkts;
     private String[] wktSpinner;
 
 
@@ -24,9 +24,9 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        wktSpinner = new String[]{"1","2","3","4","5","6","7","8","9","10","11","12"};
-        Spinner spinner = (Spinner)findViewById(R.id.wkts);
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_dropdown_item,wktSpinner);
+        wktSpinner = new String[]{"1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12"};
+        Spinner spinner = (Spinner) findViewById(R.id.wkts);
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, R.layout.spinner_item, wktSpinner);
         spinner.setAdapter(adapter);
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -43,15 +43,19 @@ public class MainActivity extends AppCompatActivity {
         });
         wkts = spinner.getSelectedItem().toString();
 
-        Button button = (Button)findViewById(R.id.next);
+        Button button = findViewById(R.id.next);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(check_fieldStatus()){
-                    Intent intent = new Intent(MainActivity.this,NextPage.class);
+                if (check_fieldStatus()) {
+                    Intent intent = new Intent(MainActivity.this, NextPage.class);
+                    intent.putExtra("teama", teama);
+                    intent.putExtra("teamb", teamb);
+                    intent.putExtra("overs", overs);
+                    intent.putExtra("wkts", wkts);
                     startActivity(intent);
-                }else{
-                    Toast toast = Toast.makeText(MainActivity.this,"Fields Cannot be left empty!",Toast.LENGTH_SHORT);
+                } else {
+                    Toast toast = Toast.makeText(MainActivity.this, "Fields Cannot be left empty!", Toast.LENGTH_SHORT);
                     toast.show();
                 }
 
@@ -60,17 +64,13 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private boolean check_fieldStatus() {
-        EditText t1 =  findViewById(R.id.teama);
-        EditText t2 =  findViewById(R.id.teamb);
-        EditText over =  findViewById(R.id.overs);
+        EditText t1 = findViewById(R.id.teama);
+        EditText t2 = findViewById(R.id.teamb);
+        EditText over = findViewById(R.id.overs);
         teama = t1.getText().toString();
         teamb = t2.getText().toString();
         overs = over.getText().toString();
-        if(teama.isEmpty()||teamb.isEmpty()||overs.isEmpty())
-        {
-            return false;
-        }
-        return true;
+        return !(teama.isEmpty() || teamb.isEmpty() || overs.isEmpty());
     }
 
 
